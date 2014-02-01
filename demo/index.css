@@ -1,0 +1,18 @@
+pre {
+    overflow-y: scroll;
+    white-space: pre;
+    word-wrap: normal;
+}
+
+div.viewport {
+    width: 320px;
+    margin: 0 auto;
+}
+
+div.item {
+    width: 320px;
+    text-align: center;
+    padding: 50px;
+    background: #EFEFEF;
+    border: 5px solid #999;
+}
