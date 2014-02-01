@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html ng-app="demo">
+<head>
+    <title>angular-flipsnap Demo</title>
+
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/flipsnap/flipsnap.js"></script>
+
+    <script src="angular-flipsnap.js"></script>
+
+    <link rel="stylesheet" href="lib/bootstrap/bootstrap.css" />
+    <style>
+        pre {
+            overflow-y: scroll;
+            white-space: pre;
+            word-wrap: normal;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1>
+                        angular-flipsnap
+                        <br/>
+                        <small>
+                            A <a href="http://pxgrid.github.io/js-flipsnap/">flipsnap.js</a> directive for <a href="http://angularjs.org/">AngularJS</a>
+                        </small>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>
+                    Getting Started
+                </h1>
+                <h2>
+                    Installation
+                </h2>
+                <p class="lead">
+                    You can install this module using Bower (which will also install the dependencies). Include the
+                    script and declare the <code>flipsnap</code> module as a dependency of your app.
+                </p>
+                <pre>bower install angular-flipsnap --save</pre>
+                <pre>angular.module('app', ['flipsnap', ...]);</pre>
+                <p class="lead">
+                    This module requires <a href="http://angularjs.org/">AngularJS 0.2.x</a> and
+                    <a href="http://pxgrid.github.io/js-flipsnap/">Flipsnap.js 0.6.x</a>.
+                </p>
+                <h2>
+                    Usage
+                </h2>
+                <p class="lead">
+                    You can place a flipsnapper in your code using the <code>flipsnap</code> directive. You must specify
+                    a name, an id, a repeater and a width for the flipsnapper.
+                </p>
+                <h3>
+                    Template
+                </h3>
+                    <pre>&lt;div flipsnap="flipsnap" width="320" repeat="item in items" id="flipsnapper1"&gt;
+    &lt;div&gt;
+        &lt;h1&gt;{{item}}&lt;/h1&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+                <h3>
+                    Controller
+                </h3>
+                <pre>$scope.items = ['1', '2', '3'];</pre>
+                <p class="lead">
+                    In this example, the flipsnap control exists on the <code>$scope</code> as <code>$scope.flipsnap</code>.
+                    The <code>repeat</code> expression is a simplified form of the <code>ng-repeat</code> expression which
+                    only supports arrays and the 'in' operator. The <code>width</code> expression is the desired width of
+                    the flipsnapper viewport in pixels.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>
+                    Examples
+                </h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-sm-6" ng-controller="example1">
+                <div style="width:340px;">
+
+                    <h2>
+                        Simple
+                        <br/>
+                        <small>
+                            Using <code>width</code> and <code>repeat</code>
+                        </small>
+                    </h2>
+
+                    <div flipsnap="flipsnap" width="320" repeat="item in items" id="flipsnapper1" style="text-align:center;border:10px solid #999999;width:340px;">
+                        <div style="text-align:center;border:20px solid #eeeeee;">
+                            <h1>{{item}}</h1>
+                        </div>
+                    </div>
+
+                    <h3>
+                        Template
+                    </h3>
+                    <pre>&lt;div flipsnap="flipsnap" width="320" repeat="item in items" id="flipsnapper1"&gt;
+    &lt;div&gt;
+        &lt;h1&gt;{{item}}&lt;/h1&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+                    <h3>
+                        Controller
+                    </h3>
+                    <pre>$scope.items = ['1', '2', '3'];</pre>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-sm-6" ng-controller="example2">
+                <div style="width:340px;">
+
+                    <h2>
+                        Buttons
+                        <br/>
+                        <small>
+                            Using <code>toPrev</code> and <code>toNext</code>
+                        </small>
+                    </h2>
+
+                    <div flipsnap="flipsnap" width="320" repeat="item in items" id="flipsnapper2" style="text-align:center;border:10px solid #999999;width:340px;">
+                        <div style="text-align:center;border:20px solid #eeeeee;">
+                            <h1>{{item}}</h1>
+                        </div>
+                    </div>
+                    <ul class="pager">
+                        <li class="previous"><a ng-click="flipsnap.toPrev()">Prev</a></li>
+                        <li class="next"><a ng-click="flipsnap.toNext()">Next</a></li>
+                    </ul>
+
+                    <h3>
+                        Template
+                    </h3>
+                    <pre>&lt;div flipsnap="flipsnap" width="320" repeat="item in items" id="flipsnapper2"&gt;
+    &lt;div&gt;
+        &lt;h1&gt;{{item}}&lt;/h1&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+    &lt;li&gt;&lt;a ng-click="flipsnap.toPrev()"&gt;Prev&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a ng-click="flipsnap.toNext()"&gt;Next&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+                    </pre>
+                    
+                    <h3>
+                        Controller
+                    </h3>
+                    <pre>$scope.items = ['1', '2', '3'];</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="jumbotron" style="margin-bottom:0;margin-top:20px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-right">
+                    <p>
+                        Built by <a href="http://ninjatronic.com/">Ninjatronic</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            'use strict';
+            angular
+                    .module('demo', ['flipsnap'])
+                    .controller('example1', function($scope) {
+                        $scope.items = ['1', '2', '3'];
+                    })
+                    .controller('example2', function($scope) {
+                        $scope.items = ['1', '2', '3'];
+                    });
+        })();
+    </script>
+
+</body>
+</html>
