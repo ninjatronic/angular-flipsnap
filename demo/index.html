@@ -41,9 +41,9 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-4 col-sm-6" ng-controller="example1">
+            <div class="col-lg-4 col-sm-6">
                 <h2>Simple</h2>
-                <div flipsnap="flipsnap" flipsnap-id="flipsnap" class="viewport">
+                <div flipsnap="flipsnapSimple" flipsnap-id="flipsnapSimple" class="viewport">
                     <div class="item" flipsnap-pane>
                         <h1>1</h1>
                     </div>
@@ -51,19 +51,18 @@
                         <h1>2</h1>
                     </div>
                 </div>
-                <h3>
-                    Template
-                </h3>
-                <pre>
-&lt;div flipsnap="flipsnap" flipsnap-id="flipsnap" class="viewport"&gt;
-    &lt;div class="item" flipsnap-pane&gt;
-        &lt;h1&gt;1&lt;/h1&gt;
-    &lt;/div&gt;
-    &lt;div class="item" flipsnap-pane&gt;
-        &lt;h1&gt;2&lt;/h1&gt;
-    &lt;/div&gt;
-&lt;/div>
-                </pre>
+            </div>
+
+            <div class="col-lg-4 col-sm-6">
+                <h2>Image</h2>
+                <div flipsnap="flipsnapImage" flipsnap-id="flipsnapImage" class="viewport">
+                    <div class="img-item" flipsnap-pane>
+                        <img src="image.png" alt="img">
+                    </div>
+                    <div class="img-item" flipsnap-pane>
+                        <img src="image.png" alt="img">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -84,10 +83,7 @@
         (function () {
             'use strict';
             angular
-                    .module('demo', ['flipsnap'])
-                    .controller('example1', function($scope) {
-                        $scope.items = ['1', '2', '3'];
-                    });
+                    .module('demo', ['flipsnap']);
         })();
     </script>
 

@@ -16,3 +16,10 @@ div.item {
     background: #EFEFEF;
     border: 5px solid #999;
 }
+
+div.img-item {
+    width: 320px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
