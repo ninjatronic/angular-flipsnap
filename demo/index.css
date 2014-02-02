@@ -20,37 +20,3 @@ div.item {
     background: #EFEFEF;
     border: 5px solid #999;
 }
-
-#fsImageId div.item {
-    margin: 0;
-    padding: 0;
-    border: 0;
-}
-
-#fsDistanceId {
-    padding-left: 45px;
-}
-
-#fsDistanceId div.item {
-    width: 210px;
-    margin: 0 10px;
-}
-
-#fsMaxPointId div.item {
-    width: 60px;
-    padding: 10px 0;
-    margin: 0 10px;
-}
-
-#fsMaxPointId div.item p.lead {
-    margin-bottom: 0;
-}
-
-#fsTransitionDurationId {
-    padding-left: 45px;
-}
-
-#fsTransitionDurationId div.item {
-    width: 210px;
-    margin: 0 10px;
-}

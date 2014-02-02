@@ -31,7 +31,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" ng-controller="example1">
         <div class="row">
             <div class="col-sm-12">
                 <h1>
@@ -40,17 +40,9 @@
             </div>
         </div>
 
-        <div class="row" ng-controller="example1">
+        <div class="row">
             <div class="col-sm-6">
-                <h2>Items</h2>
-                <pre>{{items}}</pre>
-                <button class="btn btn-primary" ng-click="items.push(''+(items.length+1))">
-                    Push
-                </button>
-                <button class="btn btn-danger" ng-click="items.pop()">
-                    Pop
-                </button>
-                <h2>Options</h2>
+                <h2><code>$scope.options</code></h2>
                 <form role="form" class="form-horizontal">
                     <div class="form-group">
                         <label for="simpleOptionsDistance" class="col-sm-4 control-label">distance</label>
@@ -89,12 +81,25 @@
                         </div>
                     </div>
                 </form>
+                <h2><code>$scope.items</code></h2>
+                <pre>{{items}}</pre>
+                <button class="btn btn-success" ng-click="items.push(''+(items.length+1))">
+                    Push
+                </button>
+                <button class="btn btn-danger" ng-click="items.pop()">
+                    Pop
+                </button>
             </div>
             <div class="col-sm-6">
-                <div flipsnap="flipsnapSimple" flipsnap-id="fsSimpleId" flipsnap-options="options" class="viewport">
+                <div flipsnap="flipsnap" flipsnap-id="flipsnapId" flipsnap-options="options" class="viewport">
                     <div ng-repeat="item in items" class="item" flipsnap-pane>
                         <h1>{{item}}</h1>
                     </div>
+                </div>
+                <div style="text-align:center;">
+                    <h2><code>$scope.flipsnap</code></h2>
+                    <button class="btn btn-primary" ng-click="flipsnap.toPrev()"><code>toPrev()</code></button>
+                    <button class="btn btn-primary" ng-click="flipsnap.toNext()"><code>toNext()</code></button>
                 </div>
             </div>
         </div>
