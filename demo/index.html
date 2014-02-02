@@ -34,36 +34,39 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <h1 class="col-sm-offset-2">
+                <h1>
                     Example
                 </h1>
             </div>
         </div>
 
         <div class="row" ng-controller="example1">
-            <div class="col-sm-12">
-                <div flipsnap="flipsnapSimple" flipsnap-id="fsSimpleId" flipsnap-options="options" class="viewport">
-                    <div ng-repeat="item in items" class="item" flipsnap-pane>
-                        <h1>{{item}}</h1>
-                    </div>
-                </div>
-                <h2 class="col-sm-offset-2">Options</h2>
+            <div class="col-sm-6">
+                <h2>Items</h2>
+                <pre>{{items}}</pre>
+                <button class="btn btn-primary" ng-click="items.push(''+(items.length+1))">
+                    Push
+                </button>
+                <button class="btn btn-danger" ng-click="items.pop()">
+                    Pop
+                </button>
+                <h2>Options</h2>
                 <form role="form" class="form-horizontal">
                     <div class="form-group">
-                        <label for="simpleOptionsDistance" class="col-sm-2 col-sm-offset-2 control-label">distance</label>
-                        <div class="col-sm-4">
+                        <label for="simpleOptionsDistance" class="col-sm-4 control-label">distance</label>
+                        <div class="col-sm-8">
                             <input ng-model="options.distance" type="number" class="form-control" id="simpleOptionsDistance" placeholder="distance">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="simpleOptionsMaxPoint" class="col-sm-2 col-sm-offset-2 control-label">maxPoint</label>
-                        <div class="col-sm-4">
+                        <label for="simpleOptionsMaxPoint" class="col-sm-4 control-label">maxPoint</label>
+                        <div class="col-sm-8">
                             <input ng-model="options.maxPoint" type="number" class="form-control" id="simpleOptionsMaxPoint" placeholder="maxPoint">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="simpleOptionsTransitionDuration" class="col-sm-2 col-sm-offset-2 control-label">transitionDuration</label>
-                        <div class="col-sm-4">
+                        <label for="simpleOptionsTransitionDuration" class="col-sm-4 control-label">transitionDuration</label>
+                        <div class="col-sm-8">
                             <input ng-model="options.transitionDuration" type="number" class="form-control" id="simpleOptionsTransitionDuration" placeholder="transitionDuration">
                         </div>
                     </div>
@@ -86,6 +89,13 @@
                         </div>
                     </div>
                 </form>
+            </div>
+            <div class="col-sm-6">
+                <div flipsnap="flipsnapSimple" flipsnap-id="fsSimpleId" flipsnap-options="options" class="viewport">
+                    <div ng-repeat="item in items" class="item" flipsnap-pane>
+                        <h1>{{item}}</h1>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
