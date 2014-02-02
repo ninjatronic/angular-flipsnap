@@ -3,7 +3,7 @@
 
     angular
         .module('flipsnap', [])
-        .directive('flipsnap', ['$window', function($window) {
+        .directive('flipsnap', ['$window', '$parse', function($window, $parse) {
 
             return {
                 transclude: true,
@@ -16,6 +16,7 @@
 
                     var $flipsnap = angular.element($element.children()[0]);
                     var id = $attrs.flipsnapId;
+                    var options = $parse($attrs.flipsnapOptions)($scope);
 
                     function isFlipsnapPane(element) {
                         var attr = element.attr('flipsnap-pane');
@@ -30,12 +31,13 @@
                             child.css('float', 'left');
                         }
                     });
+                    console.log('total: '+totalWidth);
 
                     $element.css('overflow', 'hidden');
                     $flipsnap.css('width', (totalWidth)+'px');
                     $flipsnap.attr('id', id);
 
-                    $scope.flipsnap = $window.Flipsnap('#'+id);
+                    $scope.flipsnap = $window.Flipsnap('#'+id, options);
                 }
             };
 

@@ -12,14 +12,22 @@ div.viewport {
 div.item {
     width: 320px;
     text-align: center;
-    padding: 50px;
+    padding: 50px 0;
     background: #EFEFEF;
     border: 5px solid #999;
 }
 
-div.img-item {
-    width: 320px;
-    text-align: center;
+#fsImageId div.item {
     margin: 0;
     padding: 0;
+    border: 0;
+}
+
+#fsDistanceId {
+    padding-left: 45px;
+}
+
+#fsDistanceId div.item {
+    width: 210px;
+    margin: 0 10px;
 }
