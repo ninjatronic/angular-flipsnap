@@ -13,6 +13,7 @@
                 link: function($scope, $element, $attrs, $controller, $transclude) {
 
                     var $flipsnap = angular.element($element.children()[0]);
+                    var name = $attrs.flipsnap;
                     var id = $attrs.flipsnapId;
                     var options = $parse($attrs.flipsnapOptions)($scope.$parent);
 
@@ -48,7 +49,6 @@
                             }
 
                             if(isNgRepeat(child)) {
-                                console.log('got repeater');
                                 var target = child.attr('ng-repeat').match(/in\s+(.+)/)[1];
                                 if(!repeatWatchers[target]) {
                                     repeatWatchers[target] = $scope.$parent.$watch(target, function() {
@@ -61,8 +61,6 @@
                             }
                         });
 
-                        console.log('going to set the width to: '+totalWidth);
-
                         $element.css('overflow', 'hidden');
                         $flipsnap.css('width', (totalWidth)+'px');
                         $flipsnap.attr('id', id);
@@ -71,8 +69,11 @@
                     };
 
                     $scope.generateFlipsnap = function() {
-                        console.log('generating Flipsnap');
-                        $scope.$parent.flipsnap = $window.Flipsnap('#'+id, options);
+                        var old = $scope.$parent[name];
+                        $scope.$parent[name] = $window.Flipsnap('#'+id, options);
+                        if(old) {
+                            old.destroy();
+                        }
                     };
 
                     $timeout($scope.completeLayout);
