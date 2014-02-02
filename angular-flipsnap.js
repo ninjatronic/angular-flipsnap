@@ -10,12 +10,22 @@
                 restrict: 'A',
                 scope: { },
                 template: '<div ng-transclude></div>',
-                link: function($scope, $element, $attrs, $controller, $transclude) {
+                link: function($scope, $element, $attrs) {
+
+                    if(!$window.Flipsnap) {
+                        $window.Flipsnap = function(matcher, options) { };
+                    }
 
                     var $flipsnap = angular.element($element.children()[0]);
+                    var $parent = $scope.$parent;
+
+                    $attrs.flipsnapOptions = $attrs.flipsnapOptions || {};
+                    $attrs.flipsnapId = $attrs.flipsnapId || 'flipsnap';
+                    $attrs.flipsnap = $attrs.flipsnap || 'flipsnap';
+
+                    var options = $parse($attrs.flipsnapOptions)($parent);
                     var name = $attrs.flipsnap;
                     var id = $attrs.flipsnapId;
-                    var options = $parse($attrs.flipsnapOptions)($scope.$parent);
 
                     var hiddenReset = $flipsnap[0].hidden;
                     $flipsnap[0].hidden = true;
@@ -36,7 +46,7 @@
                         return hasAttribute(element, 'ng-repeat');
                     }
 
-                    $scope.completeLayout = function() {
+                    function completeLayout() {
                         $flipsnap[0].hidden = hiddenReset;
 
                         var totalWidth = 0;
@@ -51,10 +61,10 @@
                             if(isNgRepeat(child)) {
                                 var target = child.attr('ng-repeat').match(/in\s+(.+)/)[1];
                                 if(!repeatWatchers[target]) {
-                                    repeatWatchers[target] = $scope.$parent.$watch(target, function() {
+                                    repeatWatchers[target] = $parent.$watch(target, function() {
                                         $timeout(function() {
-                                            $scope.completeLayout();
-                                            $scope.generateFlipsnap();
+                                            completeLayout();
+                                            generateFlipsnap();
                                         });
                                     }, true);
                                 }
@@ -65,18 +75,37 @@
                         $flipsnap.css('width', (totalWidth)+'px');
                         $flipsnap.attr('id', id);
 
-                        optionsWatch = optionsWatch || $scope.$parent.$watch($attrs.flipsnapOptions, $scope.generateFlipsnap, true);
-                    };
+                        optionsWatch = optionsWatch || $parent.$watch($attrs.flipsnapOptions, generateFlipsnap, true);
+                    }
 
-                    $scope.generateFlipsnap = function() {
-                        var old = $scope.$parent[name];
-                        $scope.$parent[name] = $window.Flipsnap('#'+id, options);
-                        if(old) {
-                            old.destroy();
+                    function generateFlipsnap() {
+                        var oldFlipsnap = $parent[name];
+
+                        $parent[name] = $window.Flipsnap('#'+id, options);
+
+                        updateFlipsnap();
+
+                        if(oldFlipsnap) {
+                            oldFlipsnap.destroy();
                         }
-                    };
+                    }
 
-                    $timeout($scope.completeLayout);
+                    function updateFlipsnap() {
+                        if($parent[name]) {
+                            $parent[name].canMoveNext = $parent[name].hasNext();
+                            $parent[name].canMovePrev = $parent[name].hasPrev();
+                        }
+                    }
+
+                    $flipsnap.on('fspointmove', function() {
+                        if($parent.$$phase) {
+                            updateFlipsnap();
+                        } else {
+                            $scope.$apply(updateFlipsnap);
+                        }
+                    });
+
+                    $timeout(completeLayout);
                 }
             };
 

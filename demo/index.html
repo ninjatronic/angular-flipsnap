@@ -91,15 +91,40 @@
                 </button>
             </div>
             <div class="col-sm-6">
+                <h2><code>$scope.flipsnap</code></h2>
+                <form role="form" class="form-horizontal">
+                    <div class="form-group">
+                        <label for="currentPoint" class="col-sm-4 control-label">currentPoint</label>
+                        <div class="col-sm-8">
+                            <input ng-model="flipsnap.currentPoint" type="number" class="form-control" id="currentPoint" placeholder="currentPoint">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <div class="checkbox">
+                                <label>
+                                    <input ng-model="flipsnap.canMoveNext" type="checkbox" disabled> <strong>canMoveNext</strong>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <div class="checkbox">
+                                <label>
+                                    <input ng-model="flipsnap.canMovePrev" type="checkbox" disabled> <strong>canMovePrev</strong>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" ng-click="flipsnap.toPrev()">toPrev()</button>
+                    <button class="btn btn-primary" ng-click="flipsnap.toNext()">toNext()</button>
+                </form>
+                <br/>
                 <div flipsnap="flipsnap" flipsnap-id="flipsnapId" flipsnap-options="options" class="viewport">
                     <div ng-repeat="item in items" class="item" flipsnap-pane>
                         <h1>{{item}}</h1>
                     </div>
-                </div>
-                <div style="text-align:center;">
-                    <h2><code>$scope.flipsnap</code></h2>
-                    <button class="btn btn-primary" ng-click="flipsnap.toPrev()"><code>toPrev()</code></button>
-                    <button class="btn btn-primary" ng-click="flipsnap.toNext()"><code>toNext()</code></button>
                 </div>
             </div>
         </div>
