@@ -31,3 +31,22 @@ div.item {
     width: 210px;
     margin: 0 10px;
 }
+
+#fsMaxPointId div.item {
+    width: 60px;
+    padding: 10px 0;
+    margin: 0 10px;
+}
+
+#fsMaxPointId div.item p.lead {
+    margin-bottom: 0;
+}
+
+#fsTransitionDurationId {
+    padding-left: 45px;
+}
+
+#fsTransitionDurationId div.item {
+    width: 210px;
+    margin: 0 10px;
+}
