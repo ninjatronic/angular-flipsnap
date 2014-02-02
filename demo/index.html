@@ -34,119 +34,58 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <h1>
-                    Examples
+                <h1 class="col-sm-offset-2">
+                    Example
                 </h1>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-sm-4 col-sm-offset-4">
-                <h2>Simple</h2>
-                <div flipsnap="flipsnapSimple" flipsnap-id="fsSimpleId" class="viewport">
-                    <div class="item" flipsnap-pane>
-                        <h1>1</h1>
-                    </div>
-                    <div class="item" flipsnap-pane>
-                        <h1>2</h1>
-                    </div>
-                    <div class="item" flipsnap-pane>
-                        <h1>3</h1>
+        <div class="row" ng-controller="example1">
+            <div class="col-sm-12">
+                <div flipsnap="flipsnapSimple" flipsnap-id="fsSimpleId" flipsnap-options="options" class="viewport">
+                    <div ng-repeat="item in items" class="item" flipsnap-pane>
+                        <h1>{{item}}</h1>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-sm-4 col-sm-offset-4">
-                <h2>Image</h2>
-                <div flipsnap="flipsnapImage" flipsnap-id="fsImageId" class="viewport">
-                    <div class="item" flipsnap-pane>
-                        <img src="image.png" alt="img">
+                <h2 class="col-sm-offset-2">Options</h2>
+                <form role="form" class="form-horizontal">
+                    <div class="form-group">
+                        <label for="simpleOptionsDistance" class="col-sm-2 col-sm-offset-2 control-label">distance</label>
+                        <div class="col-sm-4">
+                            <input ng-model="options.distance" type="number" class="form-control" id="simpleOptionsDistance" placeholder="distance">
+                        </div>
                     </div>
-                    <div class="item" flipsnap-pane>
-                        <img src="image.png" alt="img">
+                    <div class="form-group">
+                        <label for="simpleOptionsMaxPoint" class="col-sm-2 col-sm-offset-2 control-label">maxPoint</label>
+                        <div class="col-sm-4">
+                            <input ng-model="options.maxPoint" type="number" class="form-control" id="simpleOptionsMaxPoint" placeholder="maxPoint">
+                        </div>
                     </div>
-                    <div class="item" flipsnap-pane>
-                        <img src="image.png" alt="img">
+                    <div class="form-group">
+                        <label for="simpleOptionsTransitionDuration" class="col-sm-2 col-sm-offset-2 control-label">transitionDuration</label>
+                        <div class="col-sm-4">
+                            <input ng-model="options.transitionDuration" type="number" class="form-control" id="simpleOptionsTransitionDuration" placeholder="transitionDuration">
+                        </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="col-sm-4 col-sm-offset-4">
-                <h2>Distance</h2>
-                <div flipsnap="flipsnapTransitionDuration" flipsnap-id="fsTransitionDurationId" flipsnap-options="{distance: 230}" class="viewport">
-                    <div class="item" flipsnap-pane>
-                        <h1>1</h1>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-8">
+                            <div class="checkbox">
+                                <label>
+                                    <input ng-model="options.disableTouch" type="checkbox"> disableTouch
+                                </label>
+                            </div>
+                        </div>
                     </div>
-                    <div class="item" flipsnap-pane>
-                        <h1>2</h1>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-8">
+                            <div class="checkbox">
+                                <label>
+                                    <input ng-model="options.disable3d" type="checkbox"> disable3d
+                                </label>
+                            </div>
+                        </div>
                     </div>
-                    <div class="item" flipsnap-pane>
-                        <h1>3</h1>
-                    </div>
-                    <div class="item" flipsnap-pane>
-                        <h1>4</h1>
-                    </div>
-                    <div class="item" flipsnap-pane>
-                        <h1>5</h1>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-4 col-sm-offset-4">
-                <h2>Max Point</h2>
-                <div flipsnap="flipsnapMaxPoint" flipsnap-id="fsMaxPointId" flipsnap-options="{distance: 160, maxPoint: 3}" class="viewport">
-                    <div class="item" flipsnap-pane>
-                        <p class="lead">1</p>
-                    </div>
-                    <div class="item" flipsnap-pane>
-                        <p class="lead">2</p>
-                    </div>
-                    <div class="item" flipsnap-pane>
-                        <p class="lead">3</p>
-                    </div>
-                    <div class="item" flipsnap-pane>
-                        <p class="lead">4</p>
-                    </div>
-                    <div class="item" flipsnap-pane>
-                        <p class="lead">5</p>
-                    </div>
-                    <div class="item" flipsnap-pane>
-                        <p class="lead">6</p>
-                    </div>
-                    <div class="item" flipsnap-pane>
-                        <p class="lead">7</p>
-                    </div>
-                    <div class="item" flipsnap-pane>
-                        <p class="lead">8</p>
-                    </div>
-                    <div class="item" flipsnap-pane>
-                        <p class="lead">9</p>
-                    </div>
-                    <div class="item" flipsnap-pane>
-                        <p class="lead">10</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-4 col-sm-offset-4">
-                <h2>Transition Duration</h2>
-                <div flipsnap="flipsnapDistance" flipsnap-id="fsDistanceId" flipsnap-options="{distance: 230, transitionDuration: 1000}" class="viewport">
-                    <div class="item" flipsnap-pane>
-                        <h1>1</h1>
-                    </div>
-                    <div class="item" flipsnap-pane>
-                        <h1>2</h1>
-                    </div>
-                    <div class="item" flipsnap-pane>
-                        <h1>3</h1>
-                    </div>
-                    <div class="item" flipsnap-pane>
-                        <h1>4</h1>
-                    </div>
-                    <div class="item" flipsnap-pane>
-                        <h1>5</h1>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -167,7 +106,23 @@
         (function () {
             'use strict';
             angular
-                    .module('demo', ['flipsnap']);
+                    .module('demo', ['flipsnap'])
+                    .controller('example1', ['$scope', function($scope) {
+                        $scope.items = ['1', '2', '3', '4'];
+                        $scope.options = {};
+
+                        $scope.$watch('options', function() {
+                            if($scope.options.distance === null) {
+                                delete $scope.options.distance;
+                            }
+                            if($scope.options.maxPoint === null) {
+                                delete $scope.options.maxPoint;
+                            }
+                            if($scope.options.transitionDuration === null) {
+                                delete $scope.options.transitionDuration;
+                            }
+                        }, true);
+                    }]);
         })();
     </script>
 

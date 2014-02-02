@@ -4,6 +4,10 @@ pre {
     word-wrap: normal;
 }
 
+form.form-horizontal {
+    margin-top: 12px;
+}
+
 div.viewport {
     width: 320px;
     margin: 0 auto;

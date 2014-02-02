@@ -3,44 +3,65 @@
 
     angular
         .module('flipsnap', [])
-        .directive('flipsnap', ['$window', '$parse', function($window, $parse) {
+        .directive('flipsnap', ['$window', '$parse', '$timeout', function($window, $parse, $timeout) {
 
             return {
                 transclude: true,
                 restrict: 'A',
-                scope: {
-
-                },
+                scope: { },
                 template: '<div ng-transclude></div>',
                 link: function($scope, $element, $attrs, $controller, $transclude) {
 
                     var $flipsnap = angular.element($element.children()[0]);
                     var id = $attrs.flipsnapId;
-                    var options = $parse($attrs.flipsnapOptions)($scope);
+                    var options = $parse($attrs.flipsnapOptions)($scope.$parent);
 
-                    function isFlipsnapPane(element) {
-                        var attr = element.attr('flipsnap-pane');
+                    var hiddenReset = $flipsnap[0].hidden;
+                    $flipsnap[0].hidden = true;
+
+                    function hasAttribute(element, attrName) {
+                        var attr = element.attr(attrName);
                         return attr != undefined || attr != null;
                     }
 
-                    var totalWidth = 0;
-                    angular.forEach($flipsnap.children(), function(child) {
-                        child = angular.element(child);
-                        if(isFlipsnapPane(child)) {
-                            totalWidth += child[0].offsetWidth;
-                            child.css('float', 'left');
-                        }
-                    });
-                    console.log('total: '+totalWidth);
+                    function isFlipsnapPane(element) {
+                        return hasAttribute(element, 'flipsnap-pane');
+                    }
 
-                    $element.css('overflow', 'hidden');
-                    $flipsnap.css('width', (totalWidth)+'px');
-                    $flipsnap.attr('id', id);
+                    function completeLayout() {
+                        $flipsnap[0].hidden = hiddenReset;
 
-                    $scope.flipsnap = $window.Flipsnap('#'+id, options);
+                        var totalWidth = 0;
+                        angular.forEach($flipsnap.children(), function(child) {
+                            child = angular.element(child);
+                            if(isFlipsnapPane(child)) {
+                                totalWidth += child[0].offsetWidth;
+                                child.css('float', 'left');
+                            }
+                        });
+
+                        $element.css('overflow', 'hidden');
+                        $flipsnap.css('width', (totalWidth)+'px');
+                        $flipsnap.attr('id', id);
+
+                        $scope.$parent.$watch($attrs.flipsnapOptions, function(newValue) {
+                            console.log(newValue);
+                            $scope.$parent.flipsnap = $window.Flipsnap('#'+id, options);
+                        }, true);
+                    }
+
+                    $timeout(completeLayout);
                 }
             };
 
-        }]);
+        }])
+        .directive("onRepeatDone", function() {
+            return {
+                restriction: 'A',
+                link: function($scope, $element, $attrs, $controller, $transclude) {
+                    $scope.$emit($attrs["onRepeatDone"] || "repeatDone", $element);
+                }
+            }
+        });
 
 })();
