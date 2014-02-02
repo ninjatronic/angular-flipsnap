@@ -6,6 +6,6 @@
         "flipsnap": "0.6.x"
     },
     "devDependencies": {
-        "bootstrap": "3.x.x" // for the demo page only
+        "bootstrap": "3.x.x"
     }
 }

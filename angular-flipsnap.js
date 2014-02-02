@@ -25,7 +25,7 @@
 
                     function hasAttribute(element, attrName) {
                         var attr = element.attr(attrName);
-                        return attr != undefined || attr != null;
+                        return attr !== undefined || attr !== null;
                     }
 
                     function isFlipsnapPane(element) {
@@ -80,14 +80,6 @@
                 }
             };
 
-        }])
-        .directive("onRepeatDone", function() {
-            return {
-                restriction: 'A',
-                link: function($scope, $element, $attrs, $controller, $transclude) {
-                    $scope.$emit($attrs["onRepeatDone"] || "repeatDone", $element);
-                }
-            }
-        });
+        }]);
 
 })();
