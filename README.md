@@ -45,6 +45,10 @@ Now you can use the `flipsnap` directive in your templates. You **must** specify
 </div>
 ```
 
+### Demo
+
+You can view a demo [here](http://ninjatronic.com/flipsnap/demo/).
+
 ### API
 
 #### Flipsnap Directive
