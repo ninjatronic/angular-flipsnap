@@ -1,0 +1,218 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Angular-flipsnap by ninjatronic</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Angular-flipsnap</h1>
+        <p>AngularJS Flipsnap Directive</p>
+
+        <p class="view"><a href="https://github.com/ninjatronic/angular-flipsnap">View the Project on GitHub <small>ninjatronic/angular-flipsnap</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/ninjatronic/angular-flipsnap/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/ninjatronic/angular-flipsnap/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/ninjatronic/angular-flipsnap">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="angular-flipsnap" class="anchor" href="#angular-flipsnap"><span class="octicon octicon-link"></span></a>angular-flipsnap</h1>
+
+<p>A <a href="http://pxgrid.github.io/js-flipsnap/">flipsnap.js</a> directive for <a href="http://angularjs.org/">AngularJS</a>.</p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a name="dependencies" class="anchor" href="#dependencies"><span class="octicon octicon-link"></span></a>Dependencies</h3>
+
+<ul>
+<li><a href="http://angularjs.org/">AngularJS 1.2.x</a></li>
+<li><a href="http://pxgrid.github.io/js-flipsnap/">Flipsnap 1.6.x</a></li>
+</ul><h3>
+<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting Started</h3>
+
+<p>Install the library (and dependencies) using bower, then include them in the HTML.</p>
+
+<pre><code>bower install angular-flipsnap --save
+</code></pre>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"bower_components/angular/angular.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"bower_components/flipsnap/flipsnap.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"bower_components/angular-flipsnap/angular-flipsnap.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></div>
+
+<p>Declare the <code>flipsnap</code> module as a dependency of your app.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">'MyApp'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'flipsnap'</span><span class="p">]);</span>
+</pre></div>
+
+<p>Now you can use the <code>flipsnap</code> directive in your templates. You <strong>must</strong> specify a unique <code>flipsnap-id</code>, which will be as an <code>id</code> attribute on the scrolling element.</p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;div</span> <span class="na">flipsnap</span> <span class="na">flipsnap-id=</span><span class="s">"flipsnap"</span> <span class="na">style=</span><span class="s">"width:320px;margin:0 auto;"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">flipsnap-pane</span> <span class="na">style=</span><span class="s">"width: 320px;"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>1<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">flipsnap-pane</span> <span class="na">style=</span><span class="s">"width: 320px;"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>2<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">flipsnap-pane</span> <span class="na">style=</span><span class="s">"width: 320px;"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>3<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+
+<h3>
+<a name="api" class="anchor" href="#api"><span class="octicon octicon-link"></span></a>API</h3>
+
+<h4>
+<a name="flipsnap-directive" class="anchor" href="#flipsnap-directive"><span class="octicon octicon-link"></span></a>Flipsnap Directive</h4>
+
+<table>
+<thead><tr>
+<th>Attribute</th>
+<th>Description</th>
+<th>Type</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><code>flipsnap</code></td>
+<td>Declares that this element is a flipsnap container. The value of this attribute will be the name of the flipsnap object on the containing scope.</td>
+<td><code>String</code></td>
+</tr>
+<tr>
+<td><code>flipsnap-id</code></td>
+<td>The unique ID of the flipsnap scrolling pane.</td>
+<td><code>String</code></td>
+</tr>
+<tr>
+<td><code>flipsnap-options</code></td>
+<td>An <a href="http://docs.angularjs.org/guide/expression">AngularJS Expression</a> which evaluates to a map of options. See the options API.</td>
+<td><a href="http://docs.angularjs.org/guide/expression"><code>Expression</code></a></td>
+</tr>
+</tbody>
+</table><h4>
+<a name="flipsnap-options-map" class="anchor" href="#flipsnap-options-map"><span class="octicon octicon-link"></span></a>Flipsnap Options Map</h4>
+
+<table>
+<thead><tr>
+<th>Key</th>
+<th>Description</th>
+<th>Type</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><code>distance</code></td>
+<td>The distance to move on each scroll. If not specified this value is automatically calculated.</td>
+<td><code>Number</code></td>
+</tr>
+<tr>
+<td><code>maxPoint</code></td>
+<td>The number of stop points. If not specified this value is automatically calculated.</td>
+<td><code>Number</code></td>
+</tr>
+<tr>
+<td><code>transitionDuration</code></td>
+<td>The duration of each scroll transition, in milliseconds. If not specified this defaults to 350.</td>
+<td><code>Number</code></td>
+</tr>
+<tr>
+<td><code>disableTouch</code></td>
+<td>If set to true the flipsnap will not respond to touch. If not specified this defaults to <code>false</code>.</td>
+<td><code>Boolean</code></td>
+</tr>
+<tr>
+<td><code>disable3d</code></td>
+<td>If set to true the flipsnap will not use 3D transform. If not specified this defaults to <code>false</code>.</td>
+<td><code>Boolean</code></td>
+</tr>
+</tbody>
+</table><h4>
+<a name="flipsnap-object" class="anchor" href="#flipsnap-object"><span class="octicon octicon-link"></span></a>Flipsnap Object</h4>
+
+<p>The flipsnap object is given to the containing scope as a named property (see the Directive API).</p>
+
+<h5>
+<a name="properties" class="anchor" href="#properties"><span class="octicon octicon-link"></span></a>Properties</h5>
+
+<p><strong><code>canMoveNext</code> (<code>Boolean</code>) (readonly)</strong> True if the flipsnap can move to the next point.
+<strong><code>canMovePrev</code> (<code>Boolean</code>) (readonly)</strong> True if the flipsnap can move to the previous point.
+<strong><code>currentPoint</code> (<code>Number</code>) (readonly)</strong> The current point.</p>
+
+<h5>
+<a name="methods" class="anchor" href="#methods"><span class="octicon octicon-link"></span></a>Methods</h5>
+
+<h6>
+<a name="tonext" class="anchor" href="#tonext"><span class="octicon octicon-link"></span></a><code>toNext</code>
+</h6>
+
+<p>Scrolls the flipsnap to the next point, if available.</p>
+
+<p><em>Arguments</em></p>
+
+<p><strong><code>transitionDuration</code> (<code>Number</code>) (optional):</strong> Specifies the duration of the transition. If not specified this defaults to the value given in the directive options.</p>
+
+<h6>
+<a name="toprev" class="anchor" href="#toprev"><span class="octicon octicon-link"></span></a><code>toPrev</code>
+</h6>
+
+<p>Scrolls the flipsnap to the previous point, if available.</p>
+
+<p><em>Arguments</em></p>
+
+<p><strong><code>transitionDuration</code> (<code>Number</code>) (optional):</strong> Specifies the duration of the transition. If not specified this defaults to the value given in the directive options.</p>
+
+<h6>
+<a name="movetopoint" class="anchor" href="#movetopoint"><span class="octicon octicon-link"></span></a><code>moveToPoint</code>
+</h6>
+
+<p>Scrolls the flipsnap to the specified point, if available.</p>
+
+<p><em>Arguments</em></p>
+
+<p><strong><code>point</code> (<code>Number</code>) (required):</strong> Specifies the point to move to.</p>
+
+<p><strong><code>transitionDuration</code> (<code>Number</code>) (optional):</strong> Specifies the duration of the transition. If not specified this defaults to the value given in the directive options.</p>
+
+<h2>
+<a name="development" class="anchor" href="#development"><span class="octicon octicon-link"></span></a>Development</h2>
+
+<p>Contributions are welcome as issues or pull requests.</p>
+
+<h3>
+<a name="prerequisites" class="anchor" href="#prerequisites"><span class="octicon octicon-link"></span></a>Prerequisites</h3>
+
+<ul>
+<li><a href="https://github.com/joyent/node">NodeJS</a></li>
+<li><a href="https://github.com/bower/bower">Bower</a></li>
+</ul><h3>
+<a name="getting-started-1" class="anchor" href="#getting-started-1"><span class="octicon octicon-link"></span></a>Getting Started</h3>
+
+<pre><code>npm install
+grunt setup // performs the bower install - only necessary for using the demo html file
+grunt test // lints the file
+grunt build // builds the minified file
+</code></pre>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/ninjatronic">ninjatronic</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
