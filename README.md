@@ -58,6 +58,7 @@ Now you can use the `flipsnap` directive in your templates. You **must** specify
 #### Flipsnap Options Map
 
 | Key | Description | Type |
+| --- | ----------- | ---- |
 | `distance` | The distance to move on each scroll. If not specified this value is automatically calculated. | `Number` |
 | `maxPoint` | The number of stop points. If not specified this value is automatically calculated. | `Number` |
 | `transitionDuration` | The duration of each scroll transition, in milliseconds. If not specified this defaults to 350. | `Number` |
