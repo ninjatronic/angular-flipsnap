@@ -46,30 +46,40 @@
                         return hasAttribute(element, 'ng-repeat');
                     }
 
+                    function uniqueWatch(target) {
+                        if(!repeatWatchers[target]) {
+                            repeatWatchers[target] = $parent.$watch(target, function() {
+                                $timeout(function() {
+                                    completeLayout();
+                                    generateFlipsnap();
+                                });
+                            }, true);
+                        }
+                    }
+
                     function completeLayout() {
                         $flipsnap[0].hidden = hiddenReset;
 
-                        var totalWidth = 0;
-                        angular.forEach($flipsnap.children(), function(child) {
-                            child = angular.element(child);
+                        if($flipsnap.children().length > 0) {
+                            var totalWidth = 0;
+                            angular.forEach($flipsnap.children(), function(child) {
+                                child = angular.element(child);
 
-                            if(isFlipsnapPane(child)) {
-                                totalWidth += child[0].offsetWidth;
-                                child.css('float', 'left');
-                            }
-
-                            if(isNgRepeat(child)) {
-                                var target = child.attr('ng-repeat').match(/in\s+(.+)/)[1];
-                                if(!repeatWatchers[target]) {
-                                    repeatWatchers[target] = $parent.$watch(target, function() {
-                                        $timeout(function() {
-                                            completeLayout();
-                                            generateFlipsnap();
-                                        });
-                                    }, true);
+                                if(isFlipsnapPane(child)) {
+                                    totalWidth += child[0].offsetWidth;
+                                    child.css('float', 'left');
                                 }
-                            }
-                        });
+
+                                if(isNgRepeat(child)) {
+                                    var target = child.attr('ng-repeat').match(/in\s+(.+)/)[1];
+                                    uniqueWatch(target);
+                                }
+                            });
+                        } else if($flipsnap[0].innerHTML.match(/ngRepeat/)) {
+                            var target = $flipsnap[0].innerHTML.match(/in\s+(.+)\s-->/)[1];
+                            uniqueWatch(target);
+                        }
+
 
                         $element.css('overflow', 'hidden');
                         $flipsnap.css('width', (totalWidth)+'px');
@@ -85,6 +95,7 @@
                         newFlipsnap.element.addEventListener('mousemove', function(e) {
                             e.stopPropagation();
                         });
+
                         newFlipsnap.element.addEventListener('touchmove', function(e) {
                             e.stopPropagation();
                         });
