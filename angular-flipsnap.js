@@ -35,7 +35,7 @@
 
                     function hasAttribute(element, attrName) {
                         var attr = element.attr(attrName);
-                        return attr !== undefined || attr !== null;
+                        return (attr !== undefined) && (attr !== null);
                     }
 
                     function isFlipsnapPane(element) {
@@ -81,7 +81,14 @@
                     function generateFlipsnap() {
                         var oldFlipsnap = $parent[name];
 
-                        $parent[name] = $window.Flipsnap('#'+id, options);
+                        var newFlipsnap = $window.Flipsnap('#'+id, options);
+                        newFlipsnap.element.addEventListener('mousemove', function(e) {
+                            e.stopPropagation();
+                        });
+                        newFlipsnap.element.addEventListener('touchmove', function(e) {
+                            e.stopPropagation();
+                        });
+                        $parent[name] = newFlipsnap;
 
                         updateFlipsnap();
 
