@@ -60,8 +60,8 @@
                     function completeLayout() {
                         $flipsnap[0].hidden = hiddenReset;
 
+                        var totalWidth = 0;
                         if($flipsnap.children().length > 0) {
-                            var totalWidth = 0;
                             angular.forEach($flipsnap.children(), function(child) {
                                 child = angular.element(child);
 
