@@ -8,8 +8,7 @@
         "package.json"
     ],
     "main": [
-        "angular-flipsnap.js",
-        "angular-flipsnap.min.js"
+        "angular-flipsnap.js"
     ],
 
     "dependencies": {
