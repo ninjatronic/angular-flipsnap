@@ -116,7 +116,7 @@
                     }
 
                     $flipsnap.on('fspointmove', function() {
-                        if($parent.$$phase) {
+                        if($parent.$$phase || $parent.$root.$$phase) {
                             updateFlipsnap();
                         } else {
                             $scope.$apply(updateFlipsnap);
